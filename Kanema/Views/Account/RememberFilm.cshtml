@@ -1,0 +1,26 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Добавление фильма</title>
+</head>
+<body>
+    <div>
+        <h3>Форма оформления фильма</h3>
+        <p>Для оформления покупки заполните следующие поля:</p>
+        <form method="post">
+            <input type="hidden" value="@ViewBag.Id" name="MovieId" />
+            <table>
+                <tr>
+                    <td>Имя:</td>
+                    <td><input type="text" name="Login" /> </td>
+                </tr>
+                <tr><td><input type="submit" value="Отправить" /> </td><td></td></tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

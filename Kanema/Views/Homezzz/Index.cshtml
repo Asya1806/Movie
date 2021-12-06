@@ -1,0 +1,38 @@
+﻿@*@model IEnumerable<Kanema.Models.Movies.Movie>
+@{
+    ViewData["Title"] = "Каталог фильмов";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>"Электронный каталог для фильмов"</title>
+</head>
+<body>
+    <h3>Фильмы</h3>
+    <table>
+        <tr>
+            <td>Название</td>
+            <td>Год</td>
+            <td>Страна</td>
+            <td>Режиссер</td>
+            <td>Жанр</td>
+            <td>Аннотация</td>
+            <td></td>
+        </tr>
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@movie.Img</td>
+                <td>@movie.Name</td>
+                <td>@movie.Year</td>
+                <td>@movie.Country</td>
+                <td>@movie.Producer</td>
+                <td>@movie.Genre</td>
+                <td>@movie.Annotation</td>
+                <td><a href="~/Home/Look/@movie.Id">Смотреть</a></td>
+            </tr>
+        }
+    </table>
+</body>
+</html>*@

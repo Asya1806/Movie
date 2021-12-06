@@ -1,0 +1,81 @@
+﻿@model Movie
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <div>
+        <div>
+            <p><img src="~/img/@Model.Img" /></p>
+        </div>
+        <div>
+            <p>@Model.Name</p>
+        </div>
+        <div>
+            <p>@Model.Year</p>
+        </div>
+        <div>
+            <p>@Model.Country</p>
+        </div>
+        <div>
+            <p>@Model.Producer</p>
+        </div>
+        <div>
+            <p>@Model.Genre</p>
+        </div>
+        <div>
+            <p>@Model.Annotation</p>
+        </div>
+    </div>
+    @using (Html.BeginForm("AddMovieToBookmark", "Bookmark")) //???????????
+    {
+        <div>
+            @Html.HiddenFor(x => Model.Id)
+            @Html.Hidden("returnUrl", $"/Movies?id={Model.Id}")
+            <input type="submit" class="btn btn-success" value="Добавить в корзину" />
+        </div>
+    }
+    @*<div>
+        @if (User.IsInRole("admin"))
+        {
+            @using (Html.BeginForm("Change", "Movies")) //???????????
+            {
+                <div>
+                    @Html.HiddenFor(x => Model.Id)
+                    @Html.Hidden("returnUrl", $"/Movies?id={Model.Id}")
+                    <a href="/Movies/Change">Изменить</a>
+                    <input type="submit" class="btn btn-success" value="Изменить" />
+                </div>
+            }
+            //
+        }
+    </div>*@
+    <div>
+        @if (User.IsInRole("admin"))
+        {
+
+            @using (Html.BeginForm("DeleteMovie", "Movies")) //???????????
+            {
+                <div>
+                    @Html.HiddenFor(x => Model.Id)
+                    @Html.Hidden("returnUrl", $"/Movies?id={Model.Id}")
+                    <input type="submit" class="btn btn-success" value="Удалить" />
+                </div>
+            }
+           // <a href="/Movies/Delete">Удалить</a>
+        }
+    </div>
+    @*@using (Html.BeginForm("Change", "Movies")) //???????????
+        {
+            <div>
+                @Html.HiddenFor(x => Model.Id)
+                @Html.Hidden("returnUrl", $"/Movies?id={Model.Id}")
+                <input type="submit" class="btn btn-success" value="Изменить данные" />
+
+            </div>
+        }*@
+</body>
+</html>

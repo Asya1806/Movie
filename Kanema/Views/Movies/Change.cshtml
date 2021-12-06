@@ -1,0 +1,42 @@
+﻿@model Movie
+
+<h2>Обновление данных о продукте</h2>
+
+<form asp-action="Change" asp-controller="Movies" asp-antiforgery="true" enctype="multipart/form-data">
+    <div class="validation" asp-validation-summary="All"></div>
+    <div>
+        <label asp-for="Name">Введите название фильма</label>
+        <input type="text" asp-for="Name" value="@Model.Name" />
+        <span asp-validation-for="Name" />
+    </div>
+    <div>
+        <label asp-for="Year">Введите год фильма</label>
+        <input type="text" asp-for="Year" value="@Model.Year" />
+        <span asp-validation-for="Year" />
+    </div>
+    <div>
+        <label asp-for="Country">Введите страну фильма</label>
+        <input type="text" asp-for="Country" value="@Model.Country" />
+        <span asp-validation-for="Country" />
+    </div>
+    <div>
+        <label asp-for="Producer">Введите режиссера фильма</label>
+        <input type="text" asp-for="Producer" value="@Model.Producer" />
+        <span asp-validation-for="Producer" />
+    </div>
+    <div>
+        <label asp-for="Genre">Введите жанр фильма</label>
+        <input type="text" asp-for="Genre" value="@Model.Genre" />
+        <span asp-validation-for="Genre" />
+    </div>
+    <div>
+        <label asp-for="Annotation">Введите описание фильма</label>
+        <input type="text" asp-for="Annotation" value="@Model.Annotation" />
+        <span asp-validation-for="Annotation" />
+    </div>
+    <input asp-for="Id" value="@Model.Id" hidden="hidden" />
+    <input asp-for="Img" value="@Model.Img" hidden="hidden" />
+    <div>
+        <input type="submit" value="Изменить" />
+    </div>
+</form>

@@ -1,0 +1,35 @@
+﻿@model Kanema.Models.Bookmarks.BookmarkCountMovie
+
+<div>
+    @if (Model.ListBookmarks.Count == 0)
+    {
+        <div>Фильмов нет</div>
+    }
+    @foreach (var element in Model.ListBookmarks)
+    {
+        <div>
+            <div><img src="@element.Movie.Img" width="100" height="100" /></div>
+            <div>Наименованине фильма: @element.Movie.Name</div>
+            <div>Год: @element.Movie.Year</div>
+            <div>Страна: @element.Movie.Country</div>
+            <div>Режиссер: @element.Movie.Producer</div>
+            <div>Жанр: @element.Movie.Genre</div>
+            <div>Категория: @element.Movie.Category</div>
+            <div>Аннотация: @element.Movie.Annotation</div>
+
+           
+            @*<div>Итоговая стоимость: @(element.Product.Price * element.Quantity)</div>*@
+            @*@using (Html.BeginForm("RemoveMovieFromBookmark", "Bookmark"))
+            {
+                <div>
+                    @{
+                        int id = element.Movie.Id;
+                    }
+                    @Html.HiddenFor(x => id)
+                    @Html.Hidden("returnUrl", $"/BookmarkCountMovie")
+                    <input type="submit" class="btn btn-success" value="Удалить" />
+                </div>
+            }*@
+        </div>
+    }
+</div>

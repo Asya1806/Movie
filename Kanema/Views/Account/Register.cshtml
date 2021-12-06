@@ -1,0 +1,87 @@
+﻿@model Kanema.Models.RegisterModel
+
+<script>
+    function toggleShowPassword() {
+        var passwordTextBox = document.getElementById("passwordTextBox");
+        if (passwordTextBox.getAttribute("type") == "text") {
+            passwordTextBox.type = "password";
+        }
+        else {
+            passwordTextBox.type = "text";
+        }
+    }
+    function toggleShowConfirmPassword() {
+        var confirmPasswordTextBox = document.getElementById("confirmPasswordTextBox");
+        if (confirmPasswordTextBox.getAttribute("type") == "text") {
+            confirmPasswordTextBox.type = "password";
+        }
+        else {
+            confirmPasswordTextBox.type = "text";
+        }
+    }
+</script>
+
+<h2>Регистрация</h2>
+
+<form asp-action="Register" asp-controller="Account" asp-antiforgery="true">
+    <div class="validation" asp-validation-summary="All"></div>
+    <div>
+        <div>
+            <label asp-for="Login">Введите логин</label><br />
+            <input type="text" asp-for="Login" pattern="[A-Za-z0-9_]{4,20}" />
+            <span asp-validation-for="Login" />
+        </div>
+        <div>
+            <label asp-for="Password">Введите пароль</label><br />
+            <input id="passwordTextBox" type="password" asp-for="Password" required pattern="[A-Za-z0-9]{6,20}" />
+            <a href="#" onclick="toggleShowPassword(); return false">0</a>
+            <span asp-validation-for="Password" />
+        </div>
+        <div>
+            <label asp-for="ConfirmPassword">Повторите пароль</label><br />
+            <input id="confirmPasswordTextBox" type="password" asp-for="ConfirmPassword" required pattern="[A-Za-z0-9]{6,20}" />
+            <a href="#" onclick="toggleShowConfirmPassword(); return false">0</a>
+            <span asp-validation-for="ConfirmPassword" />
+        </div>
+        @*<div>
+            <label asp-for="Year">Введите год рождения</label><br />
+            <input type="text" asp-for="Year" />
+        </div>*@
+        <div>
+            <input type="submit" value="Регистрация" />
+        </div>
+    </div>
+</form>
+
+@*@model Kanema.ViewModels.RegisterModel
+    @{
+        ViewData["Title"] = "Register";
+    }
+
+    <h1>@ViewData["Title"]</h1>
+
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post" asp-anti-forgery="true">
+                <h4>Create a new account.</h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Login"></label>
+                    <input asp-for="Login" class="form-control" />
+                    <span asp-validation-for="Login" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ConfirmPassword"></label>
+                    <input asp-for="ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+    </div>*@

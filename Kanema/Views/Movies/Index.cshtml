@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<body onload="searchMovie()">
+    <div>
+        @if (User.IsInRole("admin"))
+        {
+            <a href="/Movies/Create">Добавить фильм</a>
+        }
+    </div>
+    <div>
+        
+        @*<form id="content">
+            <input type="text" name="input" class="input" id="search-input">
+            <button type="reset" class="search" id="search-btn"></button>
+
+        </form>
+        <script type="text/javascript">
+            const input = document.getElementById("search-input");
+            const searchBtn = document.getElementById("search-btn");
+
+            const expand = () => {
+                searchBtn.classList.toggle("close");
+                input.classList.toggle("square");
+            };
+
+            searchBtn.addEventListener("click", expand);
+        </script>
+        <div class="search">*@
+
+        <form>
+            <input type="text" name="name" id="search" maxlength="100" />
+            <input type='button' id="submit" value="Поиск" onclick="searchMovie()" />
+            <input type="button" id="reset" value="Сбросить" onclick="clearData()">
+            @*<input type="text" name="name" id="search" placeholder="Искать здесь...">
+            <button type="submit" value="Поиск" onclick="searchMovie()"></button>*@
+        </form>
+        <!--</div>-->
+
+        <div id="results"></div>
+        <script type="text/javascript">
+            function searchMovie() {
+                var name = $('#search').val();
+                name = encodeURIComponent(name);
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Search", "Movies")?name=' + name,
+                    success: function (movies) {
+                        document.getElementById("results").innerHTML = movies;
+                    }
+                });
+                if (name == '') {
+                    document.getElementById('reset').hidden = true;
+                }
+                else {
+                    document.getElementById('reset').hidden = false;
+                }
+            }
+            function clearData() {
+                $('#search').val('');
+                searchMovie();
+            }
+        </script>
+    </div>
+
+</body>

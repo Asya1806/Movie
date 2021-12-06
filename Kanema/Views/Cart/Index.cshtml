@@ -1,0 +1,73 @@
+﻿@model Kanema.Models.Cart.Cart
+
+<div>
+    @if (Model.CartLines.Count == 0)
+    {
+        <div>Корзина пуста</div>
+    }
+    @foreach (var element in Model.CartLines)
+    {
+        <div>
+            <div><img src="@element.Movie.Img" width="100" height="100" /></div>
+            <div>Наименованине фильма: @element.Movie.Name</div>
+            <div>Количество: @element.Quantity</div>
+            <div>Год: @element.Movie.Year</div>
+            @*<div>Итоговая стоимость: @(element.Product.Price * element.Quantity)</div>*@
+            @using (Html.BeginForm("RemoveMovieFromCart", "Cart"))
+            {
+                <div>
+                    @{
+                        int id = element.Movie.Id;
+                    }
+                    @Html.HiddenFor(x => id)
+                    @Html.Hidden("returnUrl", $"/Cart")
+                    <input type="submit" class="btn btn-success" value="Убрать из корзины" />
+                </div>
+            }
+        </div>
+    }
+</div>
+
+
+
+
+@*@model Kanema.Models.Cart.CartIndexViewModel
+
+    @{
+        ViewBag.Title = "GameStore: ваша корзина";
+    }*@
+<!--
+<h2>Ваша корзина</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Кол-во</th>
+            <th>Фильм</th>
+            <th class="text-right">Год</th>
+            <th class="text-right">Страна</th>
+        </tr>
+    </thead>
+    <tbody>-->
+@*@foreach (var line in Model.Cart.Lines)
+    {
+        <tr>
+            <td class="text-center">@line.Quantity</td>
+            <td class="text-left">@line.Movie.Name</td>
+            <td class="text-right">@line.Movie.Year.ToString()</td>
+            <td class="text-right">@line.Movie.Country</td>
+        </tr>
+    }*@
+<!--</tbody>
+<tfoot>
+    <tr>-->
+@*<td colspan="3" class="text-right">Итого:</td>
+    <td class="text-right">
+        @Model.Cart.ComputeTotalValue().ToString("# руб")
+    </td>*@
+<!--</tr>
+    </tfoot>
+</table>
+
+<div class="text-center">
+    @*<a class="btn btn-primary" href="@Model.ReturnUrl">Продолжить покупки</a>*@
+</div>-->

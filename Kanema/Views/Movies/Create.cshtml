@@ -1,0 +1,53 @@
+﻿@model Kanema.Models.MovieModel
+
+<h2>Создание фильма</h2>
+
+<form asp-action="Create" asp-controller="Movies" asp-antiforgery="true" enctype="multipart/form-data">
+    <div class="validation" asp-validation-summary="All"></div>
+    <div>
+        <label asp-for="Name">Введите название фильма</label>
+        <input type="text" asp-for="Name" />
+        <span asp-validation-for="Name" />
+    </div>
+    <div>
+        <label asp-for="Year">Введите год фильма</label>
+        <input type="number" asp-for="Year" />
+        <span asp-validation-for="Year" />
+    </div>
+    <div>
+        <label asp-for="Country">Введите страну фильма</label>
+        <input type="text" asp-for="Country" />
+        <span asp-validation-for="Country" />
+    </div>
+    <div>
+        <label asp-for="Producer">Введите режиссера фильма</label>
+        <input type="text" asp-for="Producer" />
+        <span asp-validation-for="Producer" />
+    </div>
+    <div>
+        <label asp-for="Genre">Введите жанр фильма</label>
+        <input type="text" asp-for="Genre" />
+        <span asp-validation-for="Genre" />
+    </div>
+    <div>
+        <label asp-for="Annotation">Введите аннотацию фильма</label>
+        <input type="text" asp-for="Annotation" />
+        <span asp-validation-for="Annotation" />
+    </div>
+    <div>
+        <select asp-for="Category">
+            @foreach (var element in ViewBag.Categories)
+            {
+                <option value="@element.Id">@element.CategoryName</option>
+            }
+        </select>
+    </div>
+    <div>
+        <label asp-for="Img">Выберите файл картинки фильма</label>
+        <input type="file" asp-for="Img" />
+        <span asp-validation-for="Img" />
+    </div>
+    <div>
+        <input type="submit" value="Создать" />
+    </div>
+</form>
